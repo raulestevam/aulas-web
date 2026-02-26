@@ -17,3 +17,8 @@ ageOrNull = null;
 
 console.log(`Nome: ${name}, Idade: ${age}, Ativo: ${active}`); 
 // exibindo valores
+
+let valor = 42;
+console.log(typeof valor);
+
+
