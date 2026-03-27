@@ -28,9 +28,10 @@ class Heroi{
 
 const heroiRaul: Heroi = new Heroi ("Raul", "Espadachim", 20, 10);
 heroiRaul.attack();
-
+    
 const heroiMarcos: Heroi = new Heroi ("Marcos", "Mago", 20, 20);
 heroiMarcos.attack();
-
+    
 const heroiRafa: Heroi = new Heroi ("Rafa", "Arqueiro", 20, 30);
-heroiRafa.attack();
+heroiRafa.attack();  
+
