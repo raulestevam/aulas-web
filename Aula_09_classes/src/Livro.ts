@@ -10,6 +10,6 @@ export class Livro{
         this.editora = editora
     }
     exibirDados():void{
-        console.log(`Nome: ${this.nome}\nAutor: ${this.autor}\nAno de Publicacao: ${this.anoPublicacao}\nEditora: ${this.editora}`);
+        console.log(`\nNome: ${this.nome}\nAutor: ${this.autor}\nAno de Publicacao: ${this.anoPublicacao}\nEditora: ${this.editora}\n`);
     }
 }
