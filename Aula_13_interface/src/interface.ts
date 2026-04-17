@@ -15,6 +15,9 @@ const Maria: Pessoa = {
     profissao: "Engenheira"
 };
 
+console.log(Joao);
+console.log(Maria);
+
 // interface com const
 interface Calculadora{
     somar(a:number, b:number ):number;
@@ -29,6 +32,8 @@ const calcular: Calculadora = {
         return a-b;
     }
 };
+console.log(calcular.somar(4, 2))
+console.log(calcular.subtrair(5, 3))
 
 //interface com classes
 interface Animal{
@@ -46,4 +51,11 @@ class Cachorro implements Animal{
     emitirSom(): void {
         console.log("AuAU");
     }
+    exibirNome(): void{
+        console.log(this.nome)
+    }
 }
+
+const dogLouco = new Cachorro("DogDog");
+dogLouco.emitirSom()
+dogLouco.exibirNome()
