@@ -19,7 +19,6 @@ app.get("/", (req: Request, res: Response): void => {
   });
 });
 
-// Rotas de produtos
 app.use("/produtos", produtosRouter);
 
 // Tratamento de rotas não encontradas
@@ -27,7 +26,7 @@ app.use((req: Request, res: Response): void => {
   res.status(404).json({ message: "Rota não encontrada" });
 });
 
-// Inicialização do servidor
+
 app.listen(PORT, (): void => {
   console.log(`✅ Servidor rodando em http://localhost:${PORT}`);
 });

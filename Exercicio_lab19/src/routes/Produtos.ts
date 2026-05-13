@@ -41,7 +41,6 @@ function novoProduto(req: Request, res: Response): void {
       data.fabricante
     );
 
-    // Tarefa 1: persistir no array
     produtos.push(produto);
 
     res.status(200).json(produto);
@@ -144,9 +143,7 @@ function atualizarProduto(req: Request, res: Response): void {
   }
 }
 
-// ─────────────────────────────────────────────
 // DELETE /produtos/:id — Remover produto
-// ─────────────────────────────────────────────
 function removerProduto(req: Request, res: Response): void {
   try {
     const id = Number(req.params.id);
