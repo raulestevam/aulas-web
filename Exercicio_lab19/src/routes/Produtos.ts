@@ -1,29 +1,23 @@
-// src/routes/produtos.ts
-
 import { Router, Request, Response } from "express";
 import { Produto } from "../models/Produto";
 import { validarProduto, validarFabricante } from "../validators/produtoValidator";
 
 const router = Router();
-
-// Array em memória (persistência em memória conforme solicitado)
 const produtos: Produto[] = [];
 
-// ─────────────────────────────────────────────
-// POST /produtos — Cadastrar produto
-// ─────────────────────────────────────────────
+// post - cadastro de produto
 function novoProduto(req: Request, res: Response): void {
   try {
     const data: any = req.body;
 
-    // Validações básicas e extras (desafio extra)
+    // verfica se ta vazio
     if (!data.nome || !data.preco || !data.fabricante) {
       throw new Error("Produto requer nome, preco e fabricante");
     }
 
     validarProduto(data);
 
-    // Desafio extra: ID duplicado
+    // ID duplicado
     if (data.id !== undefined) {
       const idJaExiste = produtos.some((p) => p.id === data.id);
       if (idJaExiste) {
@@ -56,9 +50,8 @@ function novoProduto(req: Request, res: Response): void {
   }
 }
 
-// ─────────────────────────────────────────────
+
 // GET /produtos — Listar todos os produtos
-// ─────────────────────────────────────────────
 function listarProdutos(req: Request, res: Response): void {
   try {
     res.status(200).json(produtos);
@@ -67,9 +60,7 @@ function listarProdutos(req: Request, res: Response): void {
   }
 }
 
-// ─────────────────────────────────────────────
 // GET /produtos/:id — Buscar produto por ID
-// ─────────────────────────────────────────────
 function buscarProduto(req: Request, res: Response): void {
   try {
     const id = Number(req.params.id);
@@ -92,9 +83,7 @@ function buscarProduto(req: Request, res: Response): void {
   }
 }
 
-// ─────────────────────────────────────────────
 // PUT /produtos/:id — Atualizar produto
-// ─────────────────────────────────────────────
 function atualizarProduto(req: Request, res: Response): void {
   try {
     const id = Number(req.params.id);
@@ -112,14 +101,12 @@ function atualizarProduto(req: Request, res: Response): void {
     }
 
     const data: any = req.body;
-
-    // Merge dos campos — permite atualização parcial
+    
     const produtoAtual = produtos[index];
 
     const nomeAtualizado: string = data.nome ?? produtoAtual.nome;
     const precoAtualizado: number = data.preco ?? produtoAtual.preco;
 
-    // Merge profundo do fabricante
     const fabricanteAtual = produtoAtual.fabricante;
     const fabricanteNovo = data.fabricante ?? {};
 

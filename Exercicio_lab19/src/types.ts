@@ -1,5 +1,3 @@
-// src/types.ts
-
 export interface Endereco {
   cidade: string;
   pais: string;

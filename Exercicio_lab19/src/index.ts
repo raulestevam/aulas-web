@@ -3,8 +3,6 @@ import produtosRouter from "./routes/Produtos";
 
 const app: Application = express();
 const PORT: number = 3000;
-
-// Middleware para parsear JSON no body das requisições
 app.use(express.json());
 
 // Rota raiz — health check

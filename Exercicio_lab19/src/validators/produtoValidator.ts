@@ -1,5 +1,3 @@
-// src/validators/produtoValidator.ts
-
 import { Fabricante } from "../types";
 
 export function validarProduto(data: any): void {

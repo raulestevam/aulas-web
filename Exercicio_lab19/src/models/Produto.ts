@@ -1,5 +1,3 @@
-// src/models/Produto.ts
-
 import { Fabricante } from "../types";
 
 export class Produto {

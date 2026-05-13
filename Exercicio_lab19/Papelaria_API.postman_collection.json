@@ -1,0 +1,310 @@
+{
+  "info": {
+    "name": "Papelaria API — LAB19",
+    "description": "Collection para testar a API REST de produtos da papelaria (Express + TypeScript)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": [""]
+        },
+        "description": "Verifica se a API está no ar e lista as rotas disponíveis."
+      },
+      "response": []
+    },
+    {
+      "name": "Produtos",
+      "item": [
+        {
+          "name": "1. Cadastrar Produto (Caderno)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 1,\n  \"nome\": \"Caderno\",\n  \"preco\": 12.99,\n  \"fabricante\": {\n    \"nome\": \"Tilibra\",\n    \"endereco\": {\n      \"cidade\": \"Sao Paulo\",\n      \"pais\": \"Brasil\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos"]
+            },
+            "description": "Cadastra o produto Caderno. Espera status 200 com o objeto do produto criado."
+          },
+          "response": []
+        },
+        {
+          "name": "2. Cadastrar Produto (Caneta)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 2,\n  \"nome\": \"Caneta\",\n  \"preco\": 5.50,\n  \"fabricante\": {\n    \"nome\": \"BIC\",\n    \"endereco\": {\n      \"cidade\": \"Manaus\",\n      \"pais\": \"Brasil\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos"]
+            },
+            "description": "Cadastra o produto Caneta. Espera status 200."
+          },
+          "response": []
+        },
+        {
+          "name": "3. Cadastrar Produto (Borracha)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 3,\n  \"nome\": \"Borracha\",\n  \"preco\": 2.75,\n  \"fabricante\": {\n    \"nome\": \"Faber-Castell\",\n    \"endereco\": {\n      \"cidade\": \"Sao Carlos\",\n      \"pais\": \"Brasil\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos"]
+            },
+            "description": "Cadastra o produto Borracha. Espera status 200."
+          },
+          "response": []
+        },
+        {
+          "name": "4. Listar Todos os Produtos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/produtos",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos"]
+            },
+            "description": "Retorna todos os produtos cadastrados em memória. Espera status 200 com array de produtos."
+          },
+          "response": []
+        },
+        {
+          "name": "5. Buscar Produto por ID (existe)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/produtos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos", "1"]
+            },
+            "description": "Busca o produto com id=1. Espera status 200 com o objeto do produto."
+          },
+          "response": []
+        },
+        {
+          "name": "6. Buscar Produto por ID (não encontrado)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/produtos/999",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos", "999"]
+            },
+            "description": "Busca um ID inexistente. Espera status 404 com mensagem de erro."
+          },
+          "response": []
+        },
+        {
+          "name": "7. Atualizar Produto (PUT completo)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Caderno Universitário\",\n  \"preco\": 18.90,\n  \"fabricante\": {\n    \"nome\": \"Tilibra\",\n    \"endereco\": {\n      \"cidade\": \"Bauru\",\n      \"pais\": \"Brasil\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos", "1"]
+            },
+            "description": "Atualiza todos os campos do produto id=1. Espera status 200 com produto atualizado."
+          },
+          "response": []
+        },
+        {
+          "name": "8. Atualizar Produto (PUT parcial — só preço)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"preco\": 9.99\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos", "2"]
+            },
+            "description": "Atualiza apenas o preço do produto id=2. Os demais campos devem ser mantidos. Espera status 200."
+          },
+          "response": []
+        },
+        {
+          "name": "9. Remover Produto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/produtos/3",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos", "3"]
+            },
+            "description": "Remove o produto com id=3. Espera status 200 com mensagem de confirmação."
+          },
+          "response": []
+        },
+        {
+          "name": "10. Remover Produto (não encontrado)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/produtos/999",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos", "999"]
+            },
+            "description": "Tenta remover um produto inexistente. Espera status 404."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Erros e Validações (Desafio Extra)",
+      "item": [
+        {
+          "name": "E1. POST sem nome (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"preco\": 5.00,\n  \"fabricante\": {\n    \"nome\": \"BIC\",\n    \"endereco\": {\n      \"cidade\": \"Manaus\",\n      \"pais\": \"Brasil\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos"]
+            },
+            "description": "Tenta cadastrar sem o campo 'nome'. Espera status 400."
+          },
+          "response": []
+        },
+        {
+          "name": "E2. POST com preço zero (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Lapis\",\n  \"preco\": 0,\n  \"fabricante\": {\n    \"nome\": \"Faber-Castell\",\n    \"endereco\": {\n      \"cidade\": \"Sao Carlos\",\n      \"pais\": \"Brasil\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos"]
+            },
+            "description": "Tenta cadastrar com preço = 0. Espera status 400."
+          },
+          "response": []
+        },
+        {
+          "name": "E3. POST com ID duplicado (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 1,\n  \"nome\": \"Régua\",\n  \"preco\": 3.50,\n  \"fabricante\": {\n    \"nome\": \"Faber-Castell\",\n    \"endereco\": {\n      \"cidade\": \"Sao Carlos\",\n      \"pais\": \"Brasil\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos"]
+            },
+            "description": "Tenta cadastrar com id=1 que já existe. Espera status 400 com mensagem de ID duplicado. (Execute após o request 1)"
+          },
+          "response": []
+        },
+        {
+          "name": "E4. POST sem cidade do fabricante (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Tesoura\",\n  \"preco\": 8.00,\n  \"fabricante\": {\n    \"nome\": \"Maped\",\n    \"endereco\": {\n      \"pais\": \"Franca\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos"]
+            },
+            "description": "Tenta cadastrar sem o campo 'cidade' do endereço. Espera status 400."
+          },
+          "response": []
+        },
+        {
+          "name": "E5. PUT em produto inexistente (404)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Produto Fantasma\",\n  \"preco\": 1.00\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/produtos/999",
+              "host": ["{{baseUrl}}"],
+              "path": ["produtos", "999"]
+            },
+            "description": "Tenta atualizar um produto inexistente. Espera status 404."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
