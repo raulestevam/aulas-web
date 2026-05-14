@@ -1,11 +1,11 @@
 import { Fabricante } from "../types";
-
+ 
 export class Produto {
   id: number;
   nome: string;
   preco: number;
   fabricante: Fabricante;
-
+ 
   constructor(
     id: number,
     nome: string,
