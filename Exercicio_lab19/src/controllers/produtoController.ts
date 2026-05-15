@@ -32,6 +32,10 @@ export function novoProduto(req: Request, res: Response): void {
  
 export function listarProdutos(req: Request, res: Response): void {
   try {
+    if(produtos.length === 0){
+      res.status(404).json("Não há nenhum produto cadastrado");
+      return
+    }
     res.status(200).json(produtos);
   } catch (e: unknown) {
     res.status(500).json({ message: (e as Error).message });
